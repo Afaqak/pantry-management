@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pantry Management System
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The **Pantry Management System** is a web application built using React, Next.js, and Firebase. It allows users to manage their pantry by adding, editing, deleting products, and generating recipe suggestions based on the products in their pantry.
 
-```bash
-npm run dev
+## Features
+
+- **User Authentication:** Users can log in and manage their pantry securely.
+- **Product Management:** Add, edit, and delete pantry products with details such as name, quantity, category, and price.
+- **Search Functionality:** Search for products easily using the search bar.
+- **Recipe Suggestions:** Generate recipe ideas using AI based on the products in the pantry.
+- **Responsive Design:** The application is designed to be user-friendly and responsive on different devices.
+
+## Technologies Used
+
+- **React:** For building the user interface.
+- **Next.js:** For server-side rendering and routing.
+- **Firebase:** For authentication and Firestore database management.
+- **Material-UI (MUI):** For UI components and styling.
+- **Generative AI Model:** For generating recipe suggestions.
+
+## Installation
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- Firebase project setup
+
+### Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/yourusername/pantry-management-system.git
+
+    Navigate to the Project Directory
+
+    bash
+   ```
+
+cd pantry-management-system
+
+Install Dependencies
+
+bash
+
+npm install
+
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+yarn install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Set Up Firebase
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    Create a Firebase project and set up Firestore and Authentication.
+    Add your Firebase configuration to the project:
+    Replace the Firebase configuration in utils/firebase.ts with your Firebase project's credentials.
 
-## Learn More
+Run the Application
 
-To learn more about Next.js, take a look at the following resources:
+bash
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    npm run dev
+    # or
+    yarn dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    Open your browser and go to http://localhost:3000 to see the application in action.
 
-## Deploy on Vercel
+Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    Authentication
+        Users can log in using their credentials. If not logged in, they will be redirected to the login page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    Managing Products
+        Use the "Add Product" button to add a new product to your pantry.
+        Edit or delete existing products using the corresponding icons.
+
+    Searching Products
+        Enter the product name in the search bar to filter the products list.
+
+    Generating Recipes
+        Click the "Get Recipe Suggestion" button to generate a recipe based on the products in your pantry.
+
+File Structure
+
+    app/: Contains the Next.js pages.
+    components/: Contains reusable React components.
+    utils/: Contains utility functions and Firebase configuration.
+    public/: Contains static assets like images and icons.
+ 
