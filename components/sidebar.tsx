@@ -16,6 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
 import { auth } from "@/utils/firebase";
+import RestaurantMenu from "@mui/icons-material/RestaurantMenu";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
@@ -25,13 +26,15 @@ const Sidebar = () => {
     setOpen(!open);
   };
 
-  const handleNavigation = (path:string) => {
+  const handleNavigation = (path: string) => {
     router.push(path);
     setOpen(false);
   };
 
   const handleLogout = async () => {
-    await signOut(auth).then(()=>{router.push('/login')});
+    await signOut(auth).then(() => {
+      router.push("/login");
+    });
     console.log("Logging out...");
   };
 
@@ -50,9 +53,10 @@ const Sidebar = () => {
         anchor="left"
         open={open}
         onClose={toggleDrawer}
-        sx={{ width: "400px" }}
+       
       >
         <div
+          className="w-[400px]"
           role="presentation"
           onClick={toggleDrawer}
           onKeyDown={toggleDrawer}
@@ -63,6 +67,12 @@ const Sidebar = () => {
                 <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
+            </ListItem>
+            <ListItem button onClick={() => handleNavigation("/recipes")}>
+              <ListItemIcon>
+                <RestaurantMenu />
+              </ListItemIcon>
+              <ListItemText primary="Recipes" />
             </ListItem>
             <ListItem button onClick={() => handleNavigation("/statistics")}>
               <ListItemIcon>

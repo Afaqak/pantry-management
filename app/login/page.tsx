@@ -21,7 +21,7 @@ const Login = () => {
 
   return (
     <Container sx={{ height: "80vh" }}>
-      <AuthCard
+    <AuthCard
         title="Log in"
         isLogin={true}
         onGoogleSignIn={signInWithGoogle}
