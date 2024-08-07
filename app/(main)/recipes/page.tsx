@@ -32,6 +32,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import Select, { MultiValue } from "react-select";
 import { model } from "@/utils/generative-ai";
+import { useRouter } from "next/navigation";
 
 interface Recipe {
   id?: string;
@@ -53,6 +54,7 @@ interface SelectedProductOption {
 }
 
 const RecipesPage: React.FC = () => {
+  const router=useRouter()
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<
@@ -84,6 +86,9 @@ const RecipesPage: React.FC = () => {
         setUser(currentUser);
         fetchRecipes(currentUser.uid);
         fetchProducts(currentUser.uid);
+      }else{
+        router.push('/login')
+        return
       }
     });
   }, []);
@@ -252,7 +257,7 @@ const RecipesPage: React.FC = () => {
         </Alert>
       </Snackbar>
       <div className="flex gap-2 items-center mb-8">
-        <RestaurantMenuIcon className="w-10 h-10" />
+        <RestaurantMenuIcon className="w-10 h-10 text-green-500" />
         <h1 className="text-4xl font-bold">Recipes</h1>
       </div>
       <div className="mb-4">
@@ -273,7 +278,7 @@ const RecipesPage: React.FC = () => {
           color="primary"
           onClick={handleGenerateRecipe}
           disabled={isGenerating}
-          className="bg-green-500 hover:bg-green-700 text-white"
+          className=" text-white"
         >
           {isGenerating ? "Generating..." : "Get Recipe Suggestion"}
         </Button>
@@ -351,16 +356,18 @@ const RecipesPage: React.FC = () => {
         aria-labelledby="recipe-modal-title"
         aria-describedby="recipe-modal-description"
       >
-        <Box className="absolute overflow-auto h-96 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 border border-gray-300 rounded-lg w-96">
+        <Box className="absolute overflow-auto h-96 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white border border-gray-300 rounded-lg w-96">
           {recipeDetails && (
             <>
               <Typography
                 id="recipe-modal-title"
                 variant="h6"
-                className="text-gray-600 mb-2"
+                className="text-gray-600 px-4 py-2 mb-2 sticky top-0 bg-white"
               >
                 {recipeDetails.title?.slice(3)}
               </Typography>
+              <div className="py-2 px-4">
+
               <Typography
                 id="recipe-modal-description"
                 className="text-gray-700 whitespace-pre-wrap"
@@ -370,6 +377,7 @@ const RecipesPage: React.FC = () => {
               <Typography className="text-gray-700 whitespace-pre-wrap">
                 <strong>Instructions:</strong> {recipeDetails.instructions}
               </Typography>
+              </div>
             </>
           )}
         </Box>

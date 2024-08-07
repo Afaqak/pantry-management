@@ -35,6 +35,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
       const photo = camera.current.takePhoto();
       setSelectedImage(photo);
       setImagePreview(photo);
+      setUseCamera(!useCamera);
     }
   };
 
@@ -92,7 +93,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
                           switchCamera: undefined,
                           canvas: undefined
                       }} />
-            <Button variant="contained" color="primary" onClick={handleCaptureImage} sx={{ mt: 2 }}>
+            <Button variant="contained" color="warning" className="text-white" onClick={handleCaptureImage} sx={{ mt: 2 }}>
               Capture Image
             </Button>
           </Box>
@@ -108,6 +109,8 @@ const ImageModal: React.FC<ImageModalProps> = ({
             />
             <Button
               variant="contained"
+              className="text-white"
+              color="warning"
               onClick={() => inputRef.current?.click()}
               sx={{ mt: 2 }}
             >
@@ -125,6 +128,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
           onClick={handleGenerate}
           sx={{ mt: 2 }}
           fullWidth
+          className="text-white"
           disabled={isGenerating}
         >
           {isGenerating ? <CircularProgress size={24} /> : "Generate Product"}

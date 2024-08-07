@@ -5,20 +5,22 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCRUpE71QWiusYCiWOsr3RXxYKlF1bFUxo",
-  authDomain: "pantry-man-19efd.firebaseapp.com",
-  projectId: "pantry-man-19efd",
-  storageBucket: "pantry-man-19efd.appspot.com",
-  messagingSenderId: "856063597866",
-  appId: "1:856063597866:web:b737de3cf64e3ff9e81253",
-  measurementId: "G-S9Z0XVD11Q",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
+
+
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+
 
 const signInWithGoogle = async () => {
   try {
@@ -27,5 +29,12 @@ const signInWithGoogle = async () => {
     console.error("Error signing in with Google: ", error);
   }
 };
+
+
+let analytics;
+if (typeof window !== 'undefined') {
+  analytics = getAnalytics(app);
+}
+
 
 export { auth, signInWithGoogle };

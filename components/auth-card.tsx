@@ -80,6 +80,7 @@ const AuthCard = ({ title, onGoogleSignIn, isLogin }:{title:string,onGoogleSignI
           <Button
             variant="contained"
             color="primary"
+            className="text-white"
             startIcon={<GoogleIcon />}
             onClick={handleGoogleSignIn}
             sx={{
